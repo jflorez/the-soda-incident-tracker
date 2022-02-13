@@ -19,7 +19,7 @@ bots['!progress'] = async function(message, arg) {
 	const oopsDate = new Date(oops);
 	const now = new Date();
 	const days = Math.floor((now - oopsDate)/(1000 * 60 * 60 * 24));
-	message.channel.send(`${message.member.displayName} is has been ${days} days since your last ${item}`);
+	message.channel.send(`${message.member.displayName} it has been ${days} days since your last ${item}`);
 };
 
 client.once('ready', () => {
