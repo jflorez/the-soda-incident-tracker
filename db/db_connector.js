@@ -4,7 +4,8 @@ const pool = mariadb.createPool({
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: 'sodatracker',
-    connectionLimit: 5
+    connectionLimit: 5,
+    acquireTimeout: 30000
 });
 module.exports.insertIncident = async (user, item) => {
     let conn;
