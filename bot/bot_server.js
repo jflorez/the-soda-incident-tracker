@@ -7,7 +7,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const bots = {};
 bots['!track'] = async function(message, arg) {
 	await insertIncident(message.member.displayName, arg);
-	message.channel.send(`${message.member.displayName} you have created a tracker for ${arg}`);
+	message.channel.send(`${message.member.displayName} you are now tracking days without ${arg}`);
 };
 bots['!oops'] = async function(message, arg) {
 	const {user, item, oops} = await getLatestIncident(message.member.displayName);
