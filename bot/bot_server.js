@@ -14,7 +14,7 @@ bots['!oops'] = async function(message, arg) {
 	await insertIncident(message.member.displayName, item);
 	message.channel.send(`${message.member.displayName} your ${item} tracker is now back to zero`);
 };
-bots['!incidents'] = async function(message, arg) {
+bots['!progress'] = async function(message, arg) {
 	const {user, item, oops} = await getLatestIncident(message.member.displayName);
 	const oopsDate = new Date(oops);
 	const now = new Date();
