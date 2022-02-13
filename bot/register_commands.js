@@ -7,7 +7,7 @@ const guildId = process.env.DISCORD_GUILD_ID
 const token = process.env.DISCORD_BOT_TOKEN;
 
 const commands = [
-	new SlashCommandBuilder().setName('track').setDescription('Starts a soda tracker'),
+  new SlashCommandBuilder().setName('track').setDescription('Starts a soda tracker'),
   new SlashCommandBuilder().setName('oops').setDescription('Resets the soda tracker'),
   new SlashCommandBuilder().setName('giveittome').setDescription('Days since last soda incident'),
 ].map(command => command.toJSON());
