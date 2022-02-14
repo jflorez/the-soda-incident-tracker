@@ -10,23 +10,23 @@ bots['!track'] = async function(message, arg) {
 	message.channel.send(`${message.member.displayName} you are now tracking days without ${arg}`);
 };
 bots['!oops'] = async function(message, arg) {
-	try {
-		const {user, item, oops} = await getLatestIncident(message.member.displayName);
+	const {user, item, oops} = await getLatestIncident(message.member.displayName);
+	if (item) {
 		await insertIncident(message.member.displayName, item);
 		message.channel.send(`${message.member.displayName} your ${item} tracker is now back to zero`);
-	} catch {
-		return;
+	} else {
+		message.channel.send(`${message.member.displayName} first start a tracker with !track`);
 	}
 };
 bots['!progress'] = async function(message, arg) {
 	const {user, item, oops} = await getLatestIncident(message.member.displayName);
-	try {
+	if(oops) {
 		const oopsDate = new Date(oops);
 		const now = new Date();
 		const days = Math.floor((now - oopsDate)/(1000 * 60 * 60 * 24));
 		message.channel.send(`${message.member.displayName} it has been ${days} days since your last ${item}`);
-	} catch {
-		return;
+	} else {
+		message.channel.send(`${message.member.displayName} first start a tracker with !track`);
 	}
 };
 
