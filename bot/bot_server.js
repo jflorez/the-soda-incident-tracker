@@ -10,16 +10,24 @@ bots['!track'] = async function(message, arg) {
 	message.channel.send(`${message.member.displayName} you are now tracking days without ${arg}`);
 };
 bots['!oops'] = async function(message, arg) {
-	const {user, item, oops} = await getLatestIncident(message.member.displayName);
-	await insertIncident(message.member.displayName, item);
-	message.channel.send(`${message.member.displayName} your ${item} tracker is now back to zero`);
+	try {
+		const {user, item, oops} = await getLatestIncident(message.member.displayName);
+		await insertIncident(message.member.displayName, item);
+		message.channel.send(`${message.member.displayName} your ${item} tracker is now back to zero`);
+	} catch {
+		return;
+	}
 };
 bots['!progress'] = async function(message, arg) {
 	const {user, item, oops} = await getLatestIncident(message.member.displayName);
-	const oopsDate = new Date(oops);
-	const now = new Date();
-	const days = Math.floor((now - oopsDate)/(1000 * 60 * 60 * 24));
-	message.channel.send(`${message.member.displayName} it has been ${days} days since your last ${item}`);
+	try {
+		const oopsDate = new Date(oops);
+		const now = new Date();
+		const days = Math.floor((now - oopsDate)/(1000 * 60 * 60 * 24));
+		message.channel.send(`${message.member.displayName} it has been ${days} days since your last ${item}`);
+	} catch {
+		return;
+	}
 };
 
 client.once('ready', () => {
