@@ -32,10 +32,10 @@ bots['!progress'] = async function(message, arg) {
 
 bots['!stats'] = async function(message, arg) {
 	const {userLatest, itemLatest, oopsLatest} = await getLatestIncident(message.member.displayName);
-	if(oopsLatest) {
+	// if(oopsLatest) {
 		const rows = await getCurrentIncidents(message.member.displayName, itemLatest);
 		message.channel.send(`${message.member.displayName} you have called !oops ${rows.length} times since you started your tracker for ${itemLatest}.`);
-	}
+	// }
 	
 }
 
