@@ -37,8 +37,7 @@ bots['!stats'] = async function(message, arg) {
 		const now = new Date();
 		const hours = Math.floor((now - oopsDate)/(1000 * 60 * 60));
 		const rows = await getCurrentIncidents(message.member.displayName, item);
-		message.channel.send(`${message.member.displayName} you have called !oops ${rows.length} times since you started your tracker for ${item}.\n
-			It has been ${hours} since your last !oops`);
+		message.channel.send(`${message.member.displayName} you have called !oops ${rows.length} times since you started your tracker for ${item}.\nIt has been ${hours} hours since your last !oops`);
 	} else {
 		message.channel.send(`${message.member.displayName} first start a tracker with !track`);
 	}
