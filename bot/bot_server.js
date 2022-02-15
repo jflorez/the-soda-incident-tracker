@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { insertIncident, getLatestIncident } = require('../db/db_connector');
+const { insertIncident, getLatestIncident, getCurrentIncidents } = require('../db/db_connector');
 const { Client, Intents } = require('discord.js');
 const token = process.env.DISCORD_BOT_TOKEN;
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
@@ -33,8 +33,8 @@ bots['!progress'] = async function(message, arg) {
 bots['!stats'] = async function(message, arg) {
 	const {userLatest, itemLatest, oopsLatest} = await getLatestIncident(message.member.displayName);
 	// if(oopsLatest) {
-		const rows = await getCurrentIncidents(message.member.displayName, itemLatest);
-		message.channel.send(`${message.member.displayName} you have called !oops ${rows.length} times since you started your tracker for ${itemLatest}.`);
+	const rows = await getCurrentIncidents(message.member.displayName, itemLatest);
+	message.channel.send(`${message.member.displayName} you have called !oops ${rows.length} times since you started your tracker for ${itemLatest}.`);
 	// }
 	
 }
