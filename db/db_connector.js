@@ -39,15 +39,15 @@ module.exports.getLatestIncident = async (user) => {
 
 module.exports.getCurrentIncidents = async (user, item) => {
     let conn;
-    let rows=[];
-    let ret = {};
+    let rows =[];
     try {
         conn = await pool.getConnection();
-        ret = await conn.query("SELECT user, item, oops FROM tracker WHERE user=? AND item=?", [user, item]);
+        rows = await conn.query("SELECT user, item, oops FROM tracker WHERE user=? AND item=?", [user, item]);
+        console.log(rows);
     } catch (err) {
         throw err;
     } finally {
         if (conn) await conn.end();
-        return ret;
+        return rows;
     }
 }

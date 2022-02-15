@@ -38,7 +38,6 @@ bots['!stats'] = async function(message, arg) {
 	} else {
 		message.channel.send(`${message.member.displayName} first start a tracker with !track`);
 	}
-	
 }
 
 client.once('ready', () => {
