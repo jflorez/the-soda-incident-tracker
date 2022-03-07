@@ -37,6 +37,12 @@ module.exports.getLatestIncident = async (user) => {
     }
 }
 
+/**
+ * 
+ * @param {string} user 
+ * @param {string} item 
+ * @returns {Promise<[{user: string, item: string, oops: Date}]>}
+ */
 module.exports.getCurrentIncidents = async (user, item) => {
     let conn;
     let rows =[];
