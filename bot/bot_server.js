@@ -21,9 +21,8 @@ bots['!oops'] = async function(message, arg) {
 bots['!progress'] = async function(message, arg) {
 	const {user, item, oops} = await getLatestIncident(message.member.displayName);
 	if(oops) {
-		const oopsDate = new Date(oops);
 		const now = new Date();
-		const days = Math.floor((now - oopsDate)/(1000 * 60 * 60 * 24));
+		const days = Math.floor((now - oops)/(1000 * 60 * 60 * 24));
 		message.channel.send(`${message.member.displayName} it has been ${days} days since your last ${item}`);
 	} else {
 		message.channel.send(`${message.member.displayName} first start a tracker with !track`);
@@ -33,11 +32,10 @@ bots['!progress'] = async function(message, arg) {
 bots['!stats'] = async function(message, arg) {
 	const {user, item, oops} = await getLatestIncident(message.member.displayName);
 	if(oops) {
-		const oopsDate = new Date(oops);
 		const now = new Date();
-		const hours = Math.floor((now - oopsDate)/(1000 * 60 * 60));
+		const hours = Math.floor((now - oops)/(1000 * 60 * 60));
 		const rows = await getCurrentIncidents(message.member.displayName, item);
-		let gap = 0
+		let gap = now - oops;
         for(entry of rows) {
             if(rows.indexOf(entry) < rows.length-1) {
                 const currentGap = rows[rows.indexOf(entry)+1].oops - entry.oops;
