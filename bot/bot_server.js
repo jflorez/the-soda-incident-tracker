@@ -44,7 +44,7 @@ bots['!stats'] = async function(message, arg) {
                 gap = currentGap>gap ? currentGap : gap;
             }
         }
-		message.channel.send(`${message.member.displayName} you have called !oops ${rows.length - 1} times since you started your tracker for ${item}.\nIt has been ${hours} hours since your last !oops\nYour longest streak is ${gap/1000/60/60/24}`);
+		message.channel.send(`${message.member.displayName} you have called !oops ${rows.length - 1} times since you started your tracker for ${item}.\nIt has been ${hours} hours since your last !oops\nYour longest streak is ${(gap/1000/60/60/24).toFixed(1)} days`);
 	} else {
 		message.channel.send(`${message.member.displayName} first start a tracker with !track`);
 	}
